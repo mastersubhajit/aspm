@@ -8,6 +8,13 @@ wheels/
 *.eggs/
 *.pkl
 models/
+data/2021
+data/2022
+data/2023
+data/CRSS2021CSV
+data/CRSS2022CSV
+data/CRSS2023CSV
+*.csv
 
 # Virtual environments
 .venv
