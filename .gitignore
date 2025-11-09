@@ -16,6 +16,39 @@ data/CRSS2022CSV/*.csv
 data/CRSS2023CSV/*.csv
 data/*.csv
 .env
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.json
+*.pkl
+*.h5
+*.hdf5
+*.joblib
+*.npy
+*.npz
+*.zip
+*.tar
+*.gz
 
 # Virtual environments
 .venv
+
+# Directories to ignore
+__pycache__/
+env/
+venv/
+models/
+artifacts/
+checkpoints/
+weights/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
