@@ -7,14 +7,15 @@ wheels/
 *.egg-info
 *.eggs/
 *.pkl
-models/
-data/2021
-data/2022
-data/2023
-data/CRSS2021CSV
-data/CRSS2022CSV
-data/CRSS2023CSV
-*.csv
+models/*.pkl
+data/2021/*.csv
+data/2022/*.csv
+data/2023/*.csv
+data/CRSS2021CSV/*.csv
+data/CRSS2022CSV/*.csv
+data/CRSS2023CSV/*.csv
+data/*.csv
+
 
 # Virtual environments
 .venv
