@@ -1,0 +1,14 @@
+services:
+  aspm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aspm_container
+    platform: linux/amd64
+    ports:
+      - "8080:8080"         
+    volumes:
+      - .:/app             
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: sleep infinity
