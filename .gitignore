@@ -30,6 +30,7 @@ data/*.csv
 *.zip
 *.tar
 *.gz
+*.pem
 
 # Virtual environments
 .venv
