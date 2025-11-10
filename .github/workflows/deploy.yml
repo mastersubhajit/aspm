@@ -32,8 +32,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           port: 22
           script: |
-            ssh -i ${{ secrets.SSH_KEY }} root@${{ secrets.HOST }}
-            cd /root/ASPM
+            cd ASPM
             docker pull mastersubhajit/aspm:latest
             docker compose down
             docker run -d -p 8080:8080 aspm:latest
