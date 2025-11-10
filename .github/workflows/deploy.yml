@@ -31,6 +31,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            docker pull mastersubhajit/aspm:latest
+            git clone https://github.com/mastersubhajit/aspm.git
+            cd aspm
+            
             
         
