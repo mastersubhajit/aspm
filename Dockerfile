@@ -19,6 +19,7 @@ ENV PATH="/root/.local/bin:$PATH"
 
 # Copy dependency files first for caching
 COPY pyproject.toml uv.lock* requirements.txt ./
+COPY .env /app/.env
 
 # Create and install dependencies
 RUN uv venv .venv --clear && \

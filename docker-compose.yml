@@ -6,7 +6,9 @@ services:
     container_name: aspm_container
     platform: linux/amd64
     ports:
-      - "8080:8080"         
+      - "8080:8080" 
+    env_file:
+      - .env        
     volumes:
       - .:/app             
     environment:
