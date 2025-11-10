@@ -123,14 +123,14 @@ def get_google_ai_recommendations(features: dict, injury_label: str) -> str:
         return "\n".join([f"{i+1}. {rec}" for i, rec in enumerate(recs)])
     
     failsafe_recommendations = generate_smart_recommendations(features, injury_label)
-    
-    api_key = os.getenv('GOOGLE_AI_API_KEY')
+    api_key = 'AIzaSyBNG0LIYv9cj6APDrHVixHjCushF6pUMyk'
+    #api_key = os.getenv('GOOGLE_AI_API_KEY')
     if not api_key:
         print("[WARNING] GOOGLE_AI_API_KEY not found, using failsafe recommendations")
         return failsafe_recommendations
     
     try:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
         headers = {
             "Content-Type": "application/json"
         }

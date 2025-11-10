@@ -17,17 +17,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
-# Copy dependency files first for caching
-COPY pyproject.toml uv.lock* requirements.txt ./
-COPY .env /app/.env
+# Copy dependency files
+COPY requirements.txt ./
 
 # Create and install dependencies
 RUN uv venv .venv --clear && \
-    uv pip install -r requirements.txt && \
-    uv sync --no-dev
+    uv pip install -r requirements.txt
 
 # Copy app code
 COPY . .
 
 EXPOSE 8080 80
-CMD ["uv", "run", "--ip=0.0.0.0", "--allow-root"]
+CMD ["uv", "run", "app.py", "sleep", "infinity", "python"]

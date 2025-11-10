@@ -2,8 +2,8 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output, State
-import os
-
+import os 
+    
 # Initialize the Dash app with Bootstrap + Neumorphism CSS
 app = Dash(
     __name__,
@@ -34,6 +34,5 @@ app.layout = html.Div([
     dash.page_container
 ])
 
-# Run
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=8080)
