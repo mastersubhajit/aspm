@@ -39,5 +39,4 @@ jobs:
             sudo kill -9 $(sudo lsof -t -i:8080)
             docker run -d -p 8080:8080 aspm:latest
             
-            
         

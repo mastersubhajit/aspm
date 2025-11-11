@@ -245,6 +245,78 @@ FEATURE_OPTIONS = {
 }
 
 layout = html.Div([
+    # Neumorphism Modal Overlay
+    html.Div([
+        html.Div([
+            html.Div([
+                html.H3("Model Information & Stratum Definitions", style={
+                    'color': '#2c3e50',
+                    'fontSize': '1.5rem',
+                    'fontWeight': '700',
+                    'marginBottom': '20px',
+                    'textAlign': 'center'
+                }),
+                html.H5("Accident Severity Prediction Model", style={
+                    'color': '#34495e',
+                    'fontSize': '1.1rem',
+                    'fontWeight': '600',
+                    'marginBottom': '10px'
+                }),
+                html.P("This model predicts injury severity in traffic accidents using machine learning analysis of crash data from 2021-2023. It classifies incidents into three categories:", style={
+                    'color': '#7f8c8d',
+                    'fontSize': '0.9rem',
+                    'marginBottom': '10px'
+                }),
+                html.Div([
+                    html.Div("• No Apparent Injury (O) - Minor incidents with no visible injuries", style={'color': '#27ae60', 'marginBottom': '5px', 'fontSize': '0.85rem'}),
+                    html.Div("• Minor Injury (B) - Non-incapacitating injuries requiring medical attention", style={'color': '#f39c12', 'marginBottom': '5px', 'fontSize': '0.85rem'}),
+                    html.Div("• Fatal Injury (K) - Severe or fatal outcomes", style={'color': '#e74c3c', 'marginBottom': '15px', 'fontSize': '0.85rem'})
+                ]),
+                html.H5("Stratum Classifications", style={
+                    'color': '#34495e',
+                    'fontSize': '1.1rem',
+                    'fontWeight': '600',
+                    'marginBottom': '10px'
+                }),
+                html.P("Stratums categorize crash types based on vehicle involvement and circumstances:", style={
+                    'color': '#7f8c8d',
+                    'fontSize': '0.85rem',
+                    'marginBottom': '10px'
+                }),
+                html.Div([
+                    html.Div([html.Strong("Stratum 2: "), "Crashes involving pedestrians - incidents where pedestrians are struck by vehicles"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Stratum 3: "), "Crashes involving motorcycles - accidents with motorcycles or similar two-wheeled vehicles"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Stratum 4: "), "Crashes involving passenger vehicles with model year manufactured after 2020 - newer cars with advanced safety features"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Stratum 5: "), "Crashes involving passenger vehicles with model year manufactured before 2020 - older vehicles with fewer safety systems"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Stratum 6: "), "Crashes involving utility vehicles - SUVs, pickup trucks, and similar utility vehicles"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Stratum 7: "), "Crashes involving medium or heavy trucks - commercial vehicles and large trucks"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Stratum 8: "), "Crashes involving buses and vans - public transport and commercial passenger vehicles"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Stratum 9: "), "Crashes with passenger vehicles where no one was injured - property damage only incidents"], style={'marginBottom': '8px', 'fontSize': '0.8rem'}),
+                    html.Div([html.Strong("Others: "), "Other crash types - miscellaneous incidents not fitting standard classifications"], style={'marginBottom': '15px', 'fontSize': '0.8rem'})
+                ], style={'color': '#2c3e50'}),
+                html.Button("Close", id="close-modal", className="predict-btn-white-small", n_clicks=0)
+            ], className="neu-card", style={
+                'maxWidth': '500px',
+                'maxHeight': '80vh',
+                'overflowY': 'auto',
+                'margin': '0 auto',
+                'position': 'relative'
+            })
+        ], style={
+            'position': 'fixed',
+            'top': '0',
+            'left': '0',
+            'width': '100%',
+            'height': '100%',
+            'backgroundColor': 'rgba(0,0,0,0.5)',
+            'display': 'flex',
+            'alignItems': 'center',
+            'justifyContent': 'center',
+            'zIndex': '1000',
+            'padding': '20px'
+        })
+    ], id="info-modal", style={'display': 'none'}),
+    
     html.Div([
         html.Div([
             html.Div([
@@ -252,9 +324,12 @@ layout = html.Div([
                     'fontSize': '2rem',
                     'fontWeight': '700',
                     'color': '#2c3e50',
-                    'margin': '0 0 30px 0',
+                    'margin': '0 0 20px 0',
                     'textAlign': 'center'
-                })
+                }),
+                html.Div([
+                    html.Button("ℹ️ Model Info", id="open-modal", className="predict-btn-white-small", n_clicks=0)
+                ], style={'textAlign': 'center', 'marginBottom': '10px'})
             ]),
             
             html.Div([
@@ -487,7 +562,23 @@ layout = html.Div([
         html.Div(id='recommendations-section', style={'display': 'none'}),
         dcc.Store(id='prediction-data')
     ], style={'maxWidth': '1400px', 'margin': '0 auto', 'padding': '20px'})
-])
+], style={'position': 'relative'})
+
+@callback(
+    Output("info-modal", "style"),
+    [Input("open-modal", "n_clicks"), Input("close-modal", "n_clicks")],
+    prevent_initial_call=True
+)
+def toggle_modal(open_clicks, close_clicks):
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        return {'display': 'none'}
+    
+    button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    if button_id == "open-modal":
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
 
 @callback(
     [Output('prediction-output', 'children'),
