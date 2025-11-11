@@ -77,9 +77,6 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 ```
 GOOGLE_API_KEY=your_google_gemini_api_key
-AWS_ACCESS_KEY_ID=your_aws_access_key
-AWS_SECRET_ACCESS_KEY=your_aws_secret_key
-AWS_DEFAULT_REGION=us-east-1
 ```
 
 > 🔐 The `.env` file is automatically excluded from version control.
@@ -204,15 +201,6 @@ If the API is unavailable, a **context-aware fallback engine** provides local re
 - `.gitignore` excludes sensitive files  
 - No hardcoded credentials in the codebase  
 - Uses `os.getenv()` for runtime variable access  
-
----
-
-## 🧑‍💻 Author
-
-**Master Subhajit Ghosh**  
-MSc in Artificial Intelligence | Researcher in Autonomous Systems  
-📍 [GitHub](https://github.com/mastersubhajit)  
-📧 subhajit.ai@gmail.com  
 
 ---
 
