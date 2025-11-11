@@ -33,6 +33,7 @@ jobs:
           port: 22
           script: |
             cd ASPM
+            sudo systemctl enable docker
             docker pull mastersubhajit/aspm:latest
             docker compose down
             docker run -d -p 8080:8080 aspm:latest
