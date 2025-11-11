@@ -29,14 +29,14 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
           port: 22
+          debug: true
           script: |
             cd ASPM
             sudo systemctl enable docker
             docker pull mastersubhajit/aspm:latest
             docker compose down
-            docker run -d -p 8080:8080 aspm:latest
+            docker run -d -p 8080:8080 mastersubhajit/aspm:latest
             
             
         
