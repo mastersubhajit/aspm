@@ -37,7 +37,7 @@ jobs:
             docker pull mastersubhajit/aspm:latest
             docker stop $(docker ps -q)
             sudo kill -9 $(sudo lsof -t -i:8080)
-            docker run -d -p 8080:8080 mastersubhajit/aspm:latest
+            docker run -d -p 8080:8080 aspm:latest
             
             
         
