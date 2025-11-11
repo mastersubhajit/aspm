@@ -35,7 +35,7 @@ jobs:
             cd ASPM
             sudo systemctl enable docker
             docker pull mastersubhajit/aspm:latest
-            docker compose down
+            docker stop aspm
             docker run -d -p 8080:8080 mastersubhajit/aspm:latest
             
             
